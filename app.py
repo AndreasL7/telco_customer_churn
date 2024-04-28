@@ -4,7 +4,7 @@ import requests
 
 from streamlit_gallery import components
 from streamlit_gallery.utils.page import page_group
-from tweak_customer_churn import TweakCustomerChurn
+from utils.tweak_customer_churn import TweakCustomerChurn
 
 @st.cache_data
 def load_lottie_url(url: str):
