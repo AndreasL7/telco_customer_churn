@@ -1,0 +1,3 @@
+[console_scripts]
+xgbfir = xgbfir.main:entry_point
+

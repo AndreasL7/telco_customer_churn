@@ -1,0 +1,34 @@
+digraph Tree {
+node [shape=box, style="filled", color="black", fontname="Roboto Condensed"] ;
+edge [fontname="Roboto Condensed"] ;
+rankdir=LR ;
+0 [label="payment_method_Pulsa <= 0.5\nsquared_error = 0.08\nsamples = 5634\nvalue = 0.419", fillcolor="#f4cbad"] ;
+1 [label="tenure_months <= 16.5\nsquared_error = 0.055\nsamples = 3743\nvalue = 0.306", fillcolor="#f8dfcc"] ;
+0 -> 1 [labeldistance=2.5, labelangle=-45, headlabel="True"] ;
+2 [label="use_myapp_No internet service <= 0.5\nsquared_error = 0.055\nsamples = 1137\nvalue = 0.504", fillcolor="#f1bc95"] ;
+1 -> 2 ;
+3 [label="squared_error = 0.033\nsamples = 701\nvalue = 0.634", fillcolor="#eca571"] ;
+2 -> 3 ;
+4 [label="squared_error = 0.019\nsamples = 436\nvalue = 0.295", fillcolor="#f9e1cf"] ;
+2 -> 4 ;
+5 [label="monthly_purchase_thou_idr_ <= 95.969\nsquared_error = 0.031\nsamples = 2606\nvalue = 0.22", fillcolor="#fbeee4"] ;
+1 -> 5 ;
+6 [label="squared_error = 0.007\nsamples = 1383\nvalue = 0.123", fillcolor="#ffffff"] ;
+5 -> 6 ;
+7 [label="squared_error = 0.036\nsamples = 1223\nvalue = 0.33", fillcolor="#f7dbc6"] ;
+5 -> 7 ;
+8 [label="tenure_months <= 21.5\nsquared_error = 0.054\nsamples = 1891\nvalue = 0.643", fillcolor="#eca36f"] ;
+0 -> 8 [labeldistance=2.5, labelangle=45, headlabel="False"] ;
+9 [label="monthly_purchase_thou_idr_ <= 89.469\nsquared_error = 0.027\nsamples = 1018\nvalue = 0.764", fillcolor="#e88e4d"] ;
+8 -> 9 ;
+10 [label="squared_error = 0.034\nsamples = 321\nvalue = 0.607", fillcolor="#edaa79"] ;
+9 -> 10 ;
+11 [label="squared_error = 0.008\nsamples = 697\nvalue = 0.837", fillcolor="#e58139"] ;
+9 -> 11 ;
+12 [label="monthly_purchase_thou_idr_ <= 94.094\nsquared_error = 0.048\nsamples = 873\nvalue = 0.501", fillcolor="#f1bc96"] ;
+8 -> 12 ;
+13 [label="squared_error = 0.015\nsamples = 231\nvalue = 0.271", fillcolor="#fae5d6"] ;
+12 -> 13 ;
+14 [label="squared_error = 0.034\nsamples = 642\nvalue = 0.584", fillcolor="#eeae7f"] ;
+12 -> 14 ;
+}
