@@ -768,7 +768,7 @@ def ice_pdp(_loaded_model,
                                             ice_lines_kw={"color": "#1155ccff"}, #color_palette[8]
                                             pd_line_kw={"color": "#bf9000ff"}) #color_palette[3]
     
-    fig.savefig("ice_pdp.png", format="png", dpi=300)
+    fig.savefig("img/ice_pdp.png", format="png", dpi=300)
         
     plt.close('all')
     
