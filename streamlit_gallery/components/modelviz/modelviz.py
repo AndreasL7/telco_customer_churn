@@ -20,118 +20,76 @@ import scikitplot
 import shap
 
 # Load the model
-# @st.cache_resource 
 def load_model_xgb():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn.joblib'
-    alternative_path = '../../utils/best_model_telco_churn.joblib'
+    primary_path = 'models/best_model_telco_churn.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_xgb():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn.joblib'
+    primary_path = 'models/best_pipeline_telco_churn.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
 
 # Load the model
-# @st.cache_resource 
 def load_model_logreg():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_logreg.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_logreg.joblib'
+    primary_path = 'models/best_model_telco_churn_logreg.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_logreg():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn_logreg.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn_logreg.joblib'
+    primary_path = 'models/best_pipeline_telco_churn_logreg.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
         
 # Load the model
-# @st.cache_resource 
 def load_model_svc():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_svc.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_svc.joblib'
+    primary_path = 'models/best_model_telco_churn_svc.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_svc():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn_svc.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn_svc.joblib'
+    primary_path = 'models/best_pipeline_telco_churn_svc.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
 
 # Load the model
-# @st.cache_resource 
 def load_model_soft():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_voting_soft.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_voting_soft.joblib'
+    primary_path = 'models/best_model_telco_churn_voting_soft.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
         
 # Load the model
-# @st.cache_resource 
 def load_model_hard():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_voting_hard.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_voting_hard.joblib'
+    primary_path = 'models/best_model_telco_churn_voting_hard.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
-
-# optimal_threshold = 0.27
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # @st.cache_data
 def read_data(file_name: str):
@@ -139,7 +97,7 @@ def read_data(file_name: str):
     label_encoder = LabelEncoder()
     
     return (pd
-            .read_csv(file_name)
+            .read_excel(f'data/raw/{file_name}')
             .rename(columns={'Churn Label': 'churn_label'})
             .assign(churn_label=lambda df_: label_encoder.fit_transform(df_.churn_label))
             .astype({'churn_label': 'int8'})
@@ -272,7 +230,6 @@ def which_tree(loaded_model,
     
     return html_data
 
-# @st.cache_data
 def get_tpr_fpr(probs, 
                 y_truth):
 
@@ -292,7 +249,6 @@ def get_tpr_fpr(probs,
 
     return tpr, fpr
 
-# @st.cache_data
 def threshold_analysis(_loaded_model, _loaded_pipeline, X_test, y_test):
 
     gc.enable()
@@ -342,7 +298,6 @@ def threshold_analysis(_loaded_model, _loaded_pipeline, X_test, y_test):
     )
     gc.collect()
 
-# @st.cache_data
 def confusion_matrix(_loaded_model, 
                      _loaded_pipeline, 
                      X_test, 
@@ -395,7 +350,6 @@ def confusion_matrix(_loaded_model,
     )
     gc.collect()
 
-# @st.cache_data
 def cumulative_gain_curve(_loaded_model,
                           _loaded_pipeline,
                           X_test, 
@@ -460,7 +414,6 @@ def cumulative_gain_curve(_loaded_model,
     )
     gc.collect()
    
-# @st.cache_data
 def feature_importance(_loaded_model,
                        _loaded_pipeline,
                        X_test, 
@@ -470,21 +423,21 @@ def feature_importance(_loaded_model,
     gc.enable()
     
     fig, ax = plt.subplots(figsize=(8, 12))
-    st.pyplot(so
-              .Plot((pd
-                     .DataFrame(_loaded_model.feature_importances_, index=get_selected_features(_loaded_pipeline, X_test))
-                     .rename(columns={0: "feature_importance"})
-                     .sort_values(by="feature_importance", ascending=False)
-                     .iloc[:8, :]
-                     .reset_index()),
-                    x='feature_importance',
-                    y='index'
-                   )
-              .add(so.Bar(edgewidth=0))
-              .theme({"axes.prop_cycle": matplotlib.cycler(color=[color_palette[8]])})
-              .on(ax)
-              .show()
-    )
+    (so
+     .Plot((pd
+             .DataFrame(_loaded_model.feature_importances_, index=get_selected_features(_loaded_pipeline, X_test))
+             .rename(columns={0: "feature_importance"})
+             .sort_values(by="feature_importance", ascending=False)
+             .iloc[:8, :]
+             .reset_index()),
+            x='feature_importance',
+            y='index'
+        )
+    .add(so.Bar(edgewidth=0))
+    .theme({"axes.prop_cycle": matplotlib.cycler(color=[color_palette[8]])})
+    .on(ax)
+    .show())
+    st.pyplot(fig)
     
     with st.expander("How to interpret?"):
         st.markdown("""
@@ -507,7 +460,6 @@ def feature_importance(_loaded_model,
     )
     gc.collect()
      
-# @st.cache_data
 def surrogate_models():
     
     gc.enable()
@@ -652,13 +604,9 @@ def xgbfir(_loaded_pipeline,
     del(
         xgbfir_choice,
         sort_by,
-        # post_col_trans,
-        # xgbfir_plot_xaxis,
-        # xgbfir_plot_yaxis
     )
     gc.collect()
  
-# @st.cache_data
 def shapley(_loaded_model, 
             _loaded_pipeline, 
             X_test,
@@ -752,7 +700,6 @@ def shapley(_loaded_model,
     
     gc.collect()
    
-# @st.cache_data
 def beeswarm_plot(_loaded_model,
                   _loaded_pipeline,
                   X_test,
@@ -765,7 +712,7 @@ def beeswarm_plot(_loaded_model,
     X_test_vals = shap_ex(pd.DataFrame(_loaded_pipeline.transform(X_test), columns=get_selected_features(_loaded_pipeline, X_test)))
     
     fig, ax = plt.subplots()
-    fig = shap.plots.beeswarm(X_test_vals, color=_cm)
+    ax = shap.plots.beeswarm(X_test_vals, color=_cm)
     st.pyplot(fig)
     
     with st.expander("How to interpret?"):
@@ -848,7 +795,7 @@ def main():
     sns.set_palette(color_palette)
     sns.set_style("white", {"grid.color": "#ffffff", "axes.facecolor": "w", 'figure.facecolor':'white'})
     
-    df = read_data("Telco_customer_churn_adapted_v2.csv")
+    df = read_data("Telco_customer_churn_adapted_v2.xlsx")
     get_X_train, get_X_test, get_y_train, get_y_test = dataset_split(df)
     
     X_train = get_X_train()
@@ -858,6 +805,10 @@ def main():
     
     st.title("A Peek into the Model")
     
+    if "client_name" not in st.session_state:
+        st.warning("Please input the data in the Prediction and Modelling page before viewing the model performance!")
+        return None
+        
     st.write(f"Analysing {st.session_state['client_name']} prediction results...")
     
     st.subheader("Model Choice")
@@ -1046,11 +997,6 @@ def main():
     del(
         cm,
         cmap_name,
-        # df,
-        # X_train,
-        # y_train,
-        # X_test,
-        # y_test,
     )
     gc.collect()
     

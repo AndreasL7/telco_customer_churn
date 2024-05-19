@@ -63,7 +63,7 @@ def main():
         with st.expander("⏳ COMPONENTS", True):
             page.item("Introduction", components.show_introduction, default=True)
             page.item("Prediction and Modelling⭐", components.show_prediction)
-            page.item("Model Visuralisation", components.show_modelviz)
+            page.item("Model Visualisation", components.show_modelviz)
 
     page.show()
     

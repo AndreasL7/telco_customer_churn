@@ -16,116 +16,76 @@ def load_lottie_url(url: str):
     return r.json()
 
 # Load the model
-# @st.cache_resource 
 def load_model_xgb():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn.joblib'
-    alternative_path = '../../utils/best_model_telco_churn.joblib'
+    primary_path = 'models/best_model_telco_churn.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_xgb():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn.joblib'
+    primary_path = 'models/best_pipeline_telco_churn.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
 
 # Load the model
-# @st.cache_resource 
 def load_model_logreg():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_logreg.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_logreg.joblib'
+    primary_path = 'models/best_model_telco_churn_logreg.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_logreg():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn_logreg.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn_logreg.joblib'
+    primary_path = 'models/best_pipeline_telco_churn_logreg.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
         
 # Load the model
-# @st.cache_resource 
 def load_model_svc():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_svc.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_svc.joblib'
+    primary_path = 'models/best_model_telco_churn_svc.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 # Load the pipeline
-# @st.cache_resource
 def load_pipeline_svc():
-    primary_path = 'streamlit_gallery/utils/best_pipeline_telco_churn_svc.joblib'
-    alternative_path = '../../utils/best_pipeline_telco_churn_svc.joblib'
+    primary_path = 'models/best_pipeline_telco_churn_svc.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Pipeline not found in both primary and alternative directories!")
+        raise Exception("Pipeline not found in both primary and alternative directories!")
 
-# Load the model
-# @st.cache_resource 
+# Load the model 
 def load_model_soft():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_voting_soft.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_voting_soft.joblib'
+    primary_path = 'models/best_model_telco_churn_voting_soft.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
         
 # Load the model
-# @st.cache_resource 
 def load_model_hard():
-    primary_path = 'streamlit_gallery/utils/best_model_telco_churn_voting_hard.joblib'
-    alternative_path = '../../utils/best_model_telco_churn_voting_hard.joblib'
+    primary_path = 'models/best_model_telco_churn_voting_hard.joblib'
     
     try:
         return load(primary_path)
     except FileNotFoundError:
-        try:
-            return load(alternative_path)
-        except FileNotFoundError:
-            raise Exception("Model not found in both primary and alternative directories!")
+        raise Exception("Model not found in both primary and alternative directories!")
 
 def get_session_value(key, default_value):
     
@@ -279,9 +239,7 @@ def main():
                        'payment_method': 'Pulsa',
                        'monthly_purchase_thou_idr_': 45.0,
                        'cltv_predicted_thou_idr_': 4210.7,}
-            
-            # set_form_content(sampleA)
-            # st.session_state["client_name"] = sampleA["client_name"]
+
             st.session_state.get('client_name', sampleA["client_name"])
             update_form_values(sampleA)
 
@@ -327,11 +285,11 @@ def main():
         col1, col2 = st.columns(2)
         
         with col1:
-            tenure_months = session_slider_int("How deep are the roots? How many months has the customer stayed? (0-72)", 0, 72, key='tenure_months', default_value=st.session_state.get('tenure_months', 24)) # st.session_state['form_content']['tenure_months']
+            tenure_months = session_slider_int("How deep are the roots? How many months has the customer stayed? (0-72)", 0, 72, key='tenure_months', default_value=st.session_state.get('tenure_months', 24))
         
         with col2:
-            location = session_selectbox("Where is the spotlight? Which city does the customer reside in?", ["Jakarta", "Bandung"], key='location', default_value=st.session_state.get('location', "Bandung")) # st.session_state['form_content']['location']
-            device_class = session_selectbox("What's their device flavour?", ["High End", "Mid End", "Low End"], key='device_class', default_value=st.session_state.get('device_class', "Low End")) # st.session_state['form_content']['device_class']
+            location = session_selectbox("Where is the spotlight? Which city does the customer reside in?", ["Jakarta", "Bandung"], key='location', default_value=st.session_state.get('location', "Bandung"))
+            device_class = session_selectbox("What's their device flavour?", ["High End", "Mid End", "Low End"], key='device_class', default_value=st.session_state.get('device_class', "Low End"))
     
         st.header("Chapter 2: User Vibes: Gamers, Streamers, or Learners?")
         st.write("Unravelling the Lifestyle")
@@ -339,14 +297,14 @@ def main():
         col3, col4 = st.columns(2)
         
         with col3:
-            games_product = session_radio("Chasing high scores? Does the customer use the internet service for games?", ["No", "Yes", "No internet service"], key='games_product', default_value=st.session_state.get('games_product', "No")) # st.session_state['form_content']['games_product']
-            music_product = session_radio("Is our network a concert hall? Does the customer stream music?", ["No", "Yes", "No internet service"], key='music_product', default_value=st.session_state.get('music_product', "Yes")) # st.session_state['form_content']['music_product']
-            education_product = session_radio("An E-Learner or traditional? Does the customer use our educational services?", ["No", "Yes", "No internet service"], key='education_product', default_value=st.session_state.get('education_product', "Yes")) # st.session_state['form_content']['education_product']
+            games_product = session_radio("Chasing high scores? Does the customer use the internet service for games?", ["No", "Yes", "No internet service"], key='games_product', default_value=st.session_state.get('games_product', "No"))
+            music_product = session_radio("Is our network a concert hall? Does the customer stream music?", ["No", "Yes", "No internet service"], key='music_product', default_value=st.session_state.get('music_product', "Yes"))
+            education_product = session_radio("An E-Learner or traditional? Does the customer use our educational services?", ["No", "Yes", "No internet service"], key='education_product', default_value=st.session_state.get('education_product', "Yes"))
             
         with col4:
-            video_product = session_radio("Netflix and Chill? Does the customer stream videos?", ["No", "Yes", "No internet service"], key='video_product', default_value=st.session_state.get('video_product', "Yes")) # st.session_state['form_content']['video_product']
-            call_center = session_radio("Have the customer sought our voice? Ever called our help center?", ["No", "Yes"], key='call_center', default_value=st.session_state.get('call_center', "No")) # st.session_state['form_content']['call_center']
-            use_myapp = session_radio("Is the customer in the MyApp loop? Utilizing MyApp services?", ["No", "Yes", "No internet service"], key='use_myapp', default_value=st.session_state.get('use_myapp', "Yes")) # st.session_state['form_content']['use_myapp']
+            video_product = session_radio("Netflix and Chill? Does the customer stream videos?", ["No", "Yes", "No internet service"], key='video_product', default_value=st.session_state.get('video_product', "Yes"))
+            call_center = session_radio("Have the customer sought our voice? Ever called our help center?", ["No", "Yes"], key='call_center', default_value=st.session_state.get('call_center', "No"))
+            use_myapp = session_radio("Is the customer in the MyApp loop? Utilizing MyApp services?", ["No", "Yes", "No internet service"], key='use_myapp', default_value=st.session_state.get('use_myapp', "Yes"))
     
         st.header("Chapter 3: Secrets of the Wallet")
         st.write("Unlocking Financial Chronicles")
@@ -358,17 +316,17 @@ def main():
             "How does our customer square up? Pulsa, Digital Wallet, Debit, or Credit?", 
             ["Pulsa", "Digital Wallet", "Debit", "Credit"], 
             key='payment_method', 
-            default_value=st.session_state.get('payment_method', "Pulsa") # st.session_state['form_content']['payment_method']
+            default_value=st.session_state.get('payment_method', "Pulsa")
             )
             
-            monthly_purchase = session_number_input("How Big is Their Telecom Appetite? Monthly Spend in Thousands of IDR? (20-160)", key='monthly_purchase_thou_idr_', default_value=st.session_state.get('monthly_purchase_thou_idr_', 70.0)) # st.session_state['form_content']['monthly_purchase']
+            monthly_purchase = session_number_input("How Big is Their Telecom Appetite? Monthly Spend in Thousands of IDR? (20-160)", key='monthly_purchase_thou_idr_', default_value=st.session_state.get('monthly_purchase_thou_idr_', 70.0))
         
         with col6:
-            cltv = session_number_input("What's Their Long-Term Value to Us? CLTV in Thousands of IDR? (2500-8500)", key='cltv_predicted_thou_idr_', default_value=st.session_state.get('cltv_predicted_thou_idr_ltv', 3800.0)) # st.session_state['form_content']['cltv']
+            cltv = session_number_input("What's Their Long-Term Value to Us? CLTV in Thousands of IDR? (2500-8500)", key='cltv_predicted_thou_idr_', default_value=st.session_state.get('cltv_predicted_thou_idr_ltv', 3800.0))
     
         submitted = st.form_submit_button("Submit")
         if submitted:
-            st.write(f"Dignosing {client_name}'s churn outcome...") #st.session_state['client_name']
+            st.write(f"Dignosing {client_name}'s churn outcome...")
             progress_bar = st.progress(0)
             
             for perc_completed in range(100):
