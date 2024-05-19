@@ -1,7 +1,7 @@
 # customer_churn
 **Telco Customer Churn Prediction App with Streamlit**
 
-Refer to the Streamlit app here for the interface: https://groundzero-telkomchurn.streamlit.app/ 
+Refer to the Streamlit app here for the interface: https://groundzero-telcochurn.streamlit.app/ 
 
 This repository contains a Streamlit application that predicts whether a customer of a telco company is likely or unlikely to churn based on various features provided.
 
